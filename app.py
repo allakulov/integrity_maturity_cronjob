@@ -102,6 +102,20 @@ def index():
         df = pd.read_csv('survey.csv')
         df = df.to_dict()
 
+        import yagmail
+
+        user = 'utility.maturity@gmail.com'
+        gmail_pass = app.config.get("GMAIL_PASS")
+        app_password = gmail_pass
+        to = 'uallakulov@win-s.org'
+
+        subject = 'test subject 1'
+        content = ['mail body content', 'survey.csv']
+
+        with yagmail.SMTP(user, app_password) as yag:
+            yag.send(to, subject, content)
+            
+
 
         return df
     return None
